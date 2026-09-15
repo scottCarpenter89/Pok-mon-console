@@ -15,6 +15,9 @@ viridian_forest,weedle,30,4,7
 viridian_forest,metapod,15,6,8
 viridian_forest,kakuna,15,6,8
 viridian_forest,pikachu,6,5,8
+# Oddish is here on purpose: without a Grass or Water option before Pewter City,
+# a player who chose Charmander has no good answer to the rock-type gym.
+viridian_forest,oddish,10,5,8
 viridian_forest,butterfree,2,9,10
 route1,spearow,8,2,4
 mt_moon,zubat,35,8,12

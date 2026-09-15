@@ -210,7 +210,49 @@ you in the room.
 
 ---
 
-## 8. Retheming (and why you might want to)
+## 8. Balance testing — a CS III activity worth stealing
+
+The first trainer in this game used to be unbeatable. Not "hard" — *unbeatable*: a
+fresh level-5 starter lost to Youngster Joey ten times out of ten. It was found by
+scripting the game rather than by playing it, and the technique makes an excellent
+lesson on automated testing beyond unit tests.
+
+Because the game takes its menu choices from standard input and accepts `--seed`, you
+can play it from a shell script:
+
+```bash
+# Start a new game, walk to Route 1, fight the first trainer, attack every turn.
+for seed in 12 13 14 15 16 17; do
+  { printf '1\nAsh\n1\nn\n1\n1\n2\n1\n'
+    for i in $(seq 1 30); do printf '1\n3\n'; done
+  } | java -cp out pokemon.Main --fast --seed $seed \
+    | grep -m1 -E "You defeated|BLACKED OUT"
+done
+```
+
+Run it across twenty seeds and you have a win rate instead of an opinion. The
+investigation that followed is the lesson:
+
+1. **Measure.** 0 wins out of 8. Not bad luck — a design fault.
+2. **Read the log.** Vine Whip hit Rattata for 10 but Pidgey for 4.
+3. **Explain it.** Pidgey is Normal/**Flying**, and Grass is resisted by Flying. The
+   starter's signature move was half-strength against half the opposing team, while
+   Rattata's Tail Whip was cutting the player's Defense.
+4. **Fix the cause, not the symptom.** The first trainer now has one Rattata, and the
+   starters learn their signature move at level 4 instead of 7.
+5. **Re-measure.** 10 wins out of 10, for all three starters.
+
+Set this as an assignment: *"Measure the win rate against Bug Catcher Sam for each
+starter. Is the second gym fair? Justify a change with data."* Students who have
+argued about balance from a spreadsheet of win rates have done real quality
+engineering, and they will never again confuse "it worked when I tried it" with
+"it works".
+
+The same harness catches crashes. Feeding random menu choices for a few hundred turns
+across several seeds is *fuzzing*, and it is how the null-Pokemon bug documented in
+`Battle.Side` was found.
+
+## 9. Retheming (and why you might want to)
 
 Everything the player sees comes from `data/`. To replace the creatures entirely:
 
@@ -226,7 +268,7 @@ publish.
 
 ---
 
-## 9. Fastest path if you have one week
+## 10. Fastest path if you have one week
 
 Day 1: play the game, then Trainer School lesson 1 and 4.
 Day 2: read `Type.java` together; Exercises 1–3.

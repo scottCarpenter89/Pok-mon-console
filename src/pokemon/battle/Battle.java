@@ -301,8 +301,15 @@ public class Battle {
         }
         List<String> labels = new ArrayList<>();
         for (Item item : usable) {
+            String note = item.getDescription();
+            if (item.getKind() == ItemKind.BALL && foeSide.active() != null) {
+                // Showing the real number turns every throw into a probability lesson:
+                // weaken it, put it to sleep, watch the percentage move.
+                note = "about " + CatchCalculator.catchChancePercent(foeSide.active(), item)
+                        + "% on this target";
+            }
             labels.add(Text.pad(item.getName(), 16) + "x" + player.getBag().countOf(item)
-                    + "   " + item.getDescription());
+                    + "   " + note);
         }
         int index = ui.chooseFromList("Your bag:", labels, "Back");
         if (index < 0) {

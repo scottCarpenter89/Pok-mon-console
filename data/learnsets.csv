@@ -4,7 +4,7 @@
 speciesId,level,moveId
 bulbasaur,1,tackle
 bulbasaur,1,growl
-bulbasaur,7,vine_whip
+bulbasaur,4,vine_whip
 bulbasaur,13,poison_powder
 bulbasaur,15,sleep_powder
 bulbasaur,20,razor_leaf
@@ -22,7 +22,7 @@ venusaur,40,solar_beam
 venusaur,46,double_edge
 charmander,1,scratch
 charmander,1,growl
-charmander,7,ember
+charmander,4,ember
 charmander,13,metal_claw
 charmander,19,fire_fang
 charmander,25,slash
@@ -39,7 +39,7 @@ charizard,40,flamethrower
 charizard,46,aerial_ace
 squirtle,1,tackle
 squirtle,1,tail_whip
-squirtle,7,water_gun
+squirtle,4,water_gun
 squirtle,13,withdraw
 squirtle,19,bite
 squirtle,25,aqua_tail

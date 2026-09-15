@@ -84,6 +84,7 @@ src/pokemon/
 
 test/pokemon/    MiniTest framework + 177 checks
 solutions/       the completed workbook (teacher's copy)
+examples/        a ready-made save file for starting a demo mid-game
 lessons/         18 units of lesson plans
 docs/            TEKS alignment, teacher guide, student handbook
 ```

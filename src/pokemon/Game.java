@@ -17,6 +17,8 @@ import pokemon.model.Player;
 import pokemon.model.Pokemon;
 import pokemon.model.Species;
 import pokemon.model.Stat;
+import pokemon.model.Status;
+import pokemon.model.Trainer;
 import pokemon.school.TrainerSchool;
 import pokemon.ui.ConsoleUI;
 import pokemon.world.Area;
@@ -360,12 +362,67 @@ public class Game {
             for (Pokemon pokemon : player.getParty()) {
                 labels.add(ui.pokemonLine(pokemon) + "  " + pokemon.getSpecies().typeLine());
             }
+            if (!player.getStorageBox().isEmpty()) {
+                labels.add("-- Storage box (" + player.getStorageBox().size()
+                        + " waiting) --");
+            }
             int choice = ui.chooseFromList("Your party:", labels, "Back");
             if (choice < 0) {
                 return;
             }
-            pokemonDetail(player.getParty().get(choice), choice);
+            if (choice >= player.getParty().size()) {
+                storageBoxMenu();
+            } else {
+                pokemonDetail(player.getParty().get(choice), choice);
+            }
         }
+    }
+
+    /**
+     * Swaps a Pokemon in the storage box with one in the party.
+     *
+     * <p>TEACHING NOTE (CS II - two Lists in step): a swap needs a temporary variable,
+     * exactly like swapping two numbers. Get the order wrong and one of the two is
+     * overwritten before it is saved - the same bug students hit when they write their
+     * first sort in Unit 14.
+     */
+    private void storageBoxMenu() {
+        while (!player.getStorageBox().isEmpty()) {
+            List<String> boxLabels = new ArrayList<>();
+            for (Pokemon pokemon : player.getStorageBox()) {
+                boxLabels.add(ui.pokemonLine(pokemon) + "  "
+                        + pokemon.getSpecies().typeLine());
+            }
+            int boxChoice = ui.chooseFromList("Storage box:", boxLabels, "Back");
+            if (boxChoice < 0) {
+                return;
+            }
+            Pokemon fromBox = player.getStorageBox().get(boxChoice);
+
+            if (player.getParty().size() < Trainer.MAX_PARTY) {
+                player.getStorageBox().remove(boxChoice);
+                player.addToParty(fromBox);
+                ui.message(fromBox.getNickname() + " joined your party.");
+                continue;
+            }
+
+            List<String> partyLabels = new ArrayList<>();
+            for (Pokemon pokemon : player.getParty()) {
+                partyLabels.add(ui.pokemonLine(pokemon));
+            }
+            int partyChoice = ui.chooseFromList(
+                    "Your party is full. Send which Pokemon to the box?",
+                    partyLabels, "Cancel");
+            if (partyChoice < 0) {
+                continue;
+            }
+            Pokemon fromParty = player.getParty().get(partyChoice);
+            player.getParty().set(partyChoice, fromBox);
+            player.getStorageBox().set(boxChoice, fromParty);
+            ui.message(fromParty.getNickname() + " was sent to the box, and "
+                    + fromBox.getNickname() + " joined your party.");
+        }
+        ui.message("The storage box is empty.");
     }
 
     private void pokemonDetail(Pokemon pokemon, int partyIndex) {
@@ -471,7 +528,7 @@ public class Game {
                 break;
             }
             case STATUS_HEAL: {
-                if (target.getStatus() == pokemon.model.Status.NONE) {
+                if (target.getStatus() == Status.NONE) {
                     ui.message("There's nothing to cure.");
                     return;
                 }
