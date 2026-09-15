@@ -1,0 +1,34 @@
+# encounters.csv - the wild Pokemon of each area.
+# weight: how many "tickets" the species has in the draw. Bigger = more common.
+areaId,speciesId,weight,minLevel,maxLevel
+route1,pidgey,40,2,4
+route1,rattata,40,2,4
+route1,caterpie,10,2,3
+route1,eevee,2,4,5
+route2,rattata,30,3,5
+route2,pidgey,30,3,5
+route2,weedle,20,3,5
+route2,abra,5,4,6
+route2,magikarp,5,3,5
+viridian_forest,caterpie,30,4,7
+viridian_forest,weedle,30,4,7
+viridian_forest,metapod,15,6,8
+viridian_forest,kakuna,15,6,8
+viridian_forest,pikachu,6,5,8
+viridian_forest,butterfree,2,9,10
+route1,spearow,8,2,4
+mt_moon,zubat,35,8,12
+mt_moon,geodude,30,8,12
+mt_moon,clefairy,8,9,12
+mt_moon,gastly,6,9,12
+mt_moon,onix,4,10,13
+mt_moon,machop,8,9,12
+viridian_city,meowth,20,4,6
+viridian_city,jigglypuff,10,4,6
+pewter_city,sandshrew,15,7,10
+pewter_city,koffing,10,7,10
+cerulean_city,psyduck,25,12,15
+cerulean_city,goldeen,25,12,15
+cerulean_city,growlithe,10,12,15
+cerulean_city,dratini,3,13,16
+cerulean_city,magikarp,20,10,14

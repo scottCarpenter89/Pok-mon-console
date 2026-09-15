@@ -1,0 +1,17 @@
+# items.csv - everything the player can carry.
+# kind:  BALL (catching), POTION (heals HP), STATUS_HEAL, REVIVE, KEY (story item)
+# power: POTION = HP restored;  BALL = catch bonus x10 (10 = 1.0x, 15 = 1.5x)
+id,name,kind,power,price,description
+pokeball,Poke Ball,BALL,10,200,"A device for catching wild Pokemon."
+greatball,Great Ball,BALL,15,600,"A good ball with a higher catch rate."
+ultraball,Ultra Ball,BALL,20,1200,"An excellent ball with a very high catch rate."
+potion,Potion,POTION,20,300,"Restores 20 HP to one Pokemon."
+super_potion,Super Potion,POTION,50,700,"Restores 50 HP to one Pokemon."
+hyper_potion,Hyper Potion,POTION,120,1500,"Restores 120 HP to one Pokemon."
+antidote,Antidote,STATUS_HEAL,0,150,"Cures poison."
+awakening,Awakening,STATUS_HEAL,0,250,"Wakes a sleeping Pokemon."
+paralyze_heal,Paralyze Heal,STATUS_HEAL,0,250,"Cures paralysis."
+burn_heal,Burn Heal,STATUS_HEAL,0,250,"Cures a burn."
+full_heal,Full Heal,STATUS_HEAL,0,600,"Cures any status condition."
+revive,Revive,REVIVE,0,2000,"Revives a fainted Pokemon with half its HP."
+town_map,Town Map,KEY,0,0,"A handy map of the whole region."
