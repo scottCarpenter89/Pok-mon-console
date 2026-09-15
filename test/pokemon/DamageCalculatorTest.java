@@ -50,6 +50,30 @@ public class DamageCalculatorTest {
         MiniTest.check("Defense of 0 does not divide by zero",
                 DamageCalculator.computeDamage(50, 60, 100, 0, 1.0, 1.0, false, 1.0) > 0);
 
+        MiniTest.section("Balance constants");
+
+        // TEACHING NOTE (CS III): these are TUNING values, not logic. Pinning them in a
+        // test does not stop you changing them - it stops you changing them BY ACCIDENT,
+        // and it makes a deliberate change show up in the diff as "I meant this".
+        // If you rebalance the game, update these numbers in the same commit.
+        //
+        // A REAL GOTCHA, found while writing this test: javac INLINES a
+        // "static final" primitive at compile time, so a test compiled against the old
+        // value keeps seeing the old value until the test is recompiled too. That is why
+        // build.sh always rebuilds both source trees. It is also a nice demonstration
+        // that "compiled" and "up to date" are not the same thing.
+        MiniTest.checkEquals("Same-type attack bonus is 1.5x", 1.5,
+                DamageCalculator.STAB_MULTIPLIER);
+        MiniTest.checkEquals("A critical hit is 1.5x", 1.5,
+                DamageCalculator.CRITICAL_MULTIPLIER);
+        MiniTest.checkEquals("Critical hits happen 6% of the time", 6,
+                DamageCalculator.CRITICAL_CHANCE_PERCENT);
+        MiniTest.checkEquals("High-crit moves crit 20% of the time", 20,
+                DamageCalculator.HIGH_CRITICAL_CHANCE_PERCENT);
+        MiniTest.check("High-crit moves really are better",
+                DamageCalculator.HIGH_CRITICAL_CHANCE_PERCENT
+                        > DamageCalculator.CRITICAL_CHANCE_PERCENT);
+
         MiniTest.section("Stat stages");
         MiniTest.checkEquals("Stage 0 changes nothing", 1.0, StatStages.multiplier(0));
         MiniTest.checkEquals("Stage +2 doubles the stat", 2.0, StatStages.multiplier(2));

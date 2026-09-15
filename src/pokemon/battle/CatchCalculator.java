@@ -57,15 +57,44 @@ public final class CatchCalculator {
     }
 
     /**
+     * The chance (out of 256) that the ball wobbles once more.
+     *
+     * <p>TEACHING NOTE (CS II/III - working backwards from the answer you want):
+     * We want the OVERALL chance of catching to be {@code catchValue / 255}, and the
+     * ball has to wobble {@link #SHAKES_REQUIRED} times in a row for that to happen.
+     * Four independent events all happening is {@code p * p * p * p}, so each single
+     * wobble needs a probability of the FOURTH ROOT of the answer we want:
+     *
+     * <pre>
+     *   perShake = (catchValue / 255) ^ (1/4)
+     * </pre>
+     *
+     * <p>Getting this wrong is instructive. The first version of this class used the
+     * raw value for every shake, which quietly made the real catch rate
+     * {@code (85/256)^4} - about 1% - and Poke Balls felt broken. Probability that
+     * multiplies is not intuitive, and it is worth a full lesson.
+     */
+    public static int shakeThreshold(int catchValue) {
+        double overall = Math.max(0.0, Math.min(1.0, catchValue / 255.0));
+        double perShake = Math.pow(overall, 1.0 / SHAKES_REQUIRED);
+        return (int) Math.round(perShake * 256);
+    }
+
+    /** The overall chance of this ball working, as a percentage. Used by the UI and tests. */
+    public static int catchChancePercent(Pokemon target, Item ball) {
+        return (int) Math.round(catchValue(target, ball) / 255.0 * 100);
+    }
+
+    /**
      * Throws the ball.
      *
      * @return how many times the ball shook, 0-4. Four means the Pokemon is caught.
      */
     public static int attemptCatch(Pokemon target, Item ball, RandomSource rng) {
-        int value = catchValue(target, ball);
+        int threshold = shakeThreshold(catchValue(target, ball));
         int shakes = 0;
         for (int i = 0; i < SHAKES_REQUIRED; i++) {
-            if (rng.nextInt(256) < value) {
+            if (rng.nextInt(256) < threshold) {
                 shakes++;
             } else {
                 break;      // The ball popped open early.

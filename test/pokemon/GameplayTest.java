@@ -64,6 +64,25 @@ public class GameplayTest {
                 CatchCalculator.attemptCatch(healthy, pokeball, new FixedRandom(255)));
         MiniTest.checkEquals("Sleep doubles the bonus", 2.0,
                 CatchCalculator.statusBonus(Status.SLEEP));
+
+        // The overall catch chance must actually be playable. A full-health Pidgey in a
+        // Poke Ball should be roughly a one-in-three throw, not one in a hundred.
+        int commonChance = CatchCalculator.catchChancePercent(healthy, pokeball);
+        MiniTest.check("A common species at full health is catchable (" + commonChance
+                + "%)", commonChance >= 20 && commonChance <= 60);
+        int weakenedChance = CatchCalculator.catchChancePercent(hurt, ultraball);
+        MiniTest.check("A weakened species in an Ultra Ball is nearly certain ("
+                + weakenedChance + "%)", weakenedChance >= 90);
+        MiniTest.check("Hurting the target improves the odds",
+                CatchCalculator.catchChancePercent(hurt, pokeball) > commonChance);
+
+        // Four wobbles in a row must multiply out to the advertised chance.
+        double perShake = CatchCalculator.shakeThreshold(
+                CatchCalculator.catchValue(healthy, pokeball)) / 256.0;
+        double overall = Math.pow(perShake, CatchCalculator.SHAKES_REQUIRED) * 100;
+        MiniTest.check("Four shakes multiply out to the advertised chance ("
+                + Math.round(overall) + "% vs " + commonChance + "%)",
+                Math.abs(overall - commonChance) <= 3);
         MiniTest.checkEquals("A healthy target gets no bonus", 1.0,
                 CatchCalculator.statusBonus(Status.NONE));
     }

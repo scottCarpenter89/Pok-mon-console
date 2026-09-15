@@ -106,7 +106,9 @@ public final class DataLoader {
                     headers = CsvRow.split(line);
                     continue;
                 }
-                rows.add(new CsvRow(fileName, lineNumber, headers, CsvRow.split(line)));
+                // Report the path the way the user typed it, so the message can be
+                // pasted straight into an editor: "data/species.csv line 55: ..."
+                rows.add(new CsvRow(file.toString(), lineNumber, headers, CsvRow.split(line)));
             }
         } catch (IOException e) {
             throw new DataException("Could not read " + file + ": " + e.getMessage(), e);
