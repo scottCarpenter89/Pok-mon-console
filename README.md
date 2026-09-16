@@ -128,9 +128,10 @@ These are deliberate, and they are worth explaining to students at some point:
   spreadsheet.
 - **Randomness goes through an interface.** `RandomSource` lets tests replace chance
   with certainty. This is the reason the damage formula is testable at all.
-- **The UI is quarantined.** Nothing in `model/`, `battle/` or `world/` prints
-  anything. That is what makes the test suite possible, and it is the cleanest
-  example of separation of concerns in the project.
+- **The UI is quarantined.** `model/` and `world/` produce no output at all, and
+  nothing outside `ui/` ever touches `System.out` — `Battle` narrates through a
+  `ConsoleUI` handed to it, which is why swapping in a GUI is a one-file job. It is
+  also why the rules can be tested without a human typing answers.
 - **Some comments explain *why*, not *what*.** Comments marked `TEACHING NOTE` are
   written for a student reader and name the concept and the course level.
 - **One bug was left in the commit history on purpose.** `Battle.Side.active` carries

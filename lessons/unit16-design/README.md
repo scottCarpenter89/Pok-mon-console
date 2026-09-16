@@ -35,8 +35,8 @@ two builds are independent, because that bug is so easy to write.
 
 | Layer | Package | Rule |
 |---|---|---|
-| Model | `model/`, `world/` | Knows the rules. Prints nothing |
-| Logic | `battle/`, `data/` | Coordinates the model. Prints nothing |
+| Model | `model/`, `world/` | Knows the rules. No output at all |
+| Logic | `battle/`, `data/` | Coordinates the model. Narrates through a UI it was handed, never `System.out` |
 | View | `ui/` | Prints and reads. Knows no rules |
 | Entry | `Main`, `Game` | Wires it all together |
 
