@@ -1,0 +1,12 @@
+# areas.csv - the world map. 'connections' lists the areas you can walk to,
+# separated by | characters. Connections are one-way as written, so list both
+# directions if you want a two-way road.
+id,name,pokemonCenter,shop,connections,description
+pallet_town,Pallet Town,true,false,route1,"A quiet town of two houses and one very famous laboratory."
+route1,Route 1,false,false,pallet_town|viridian_city,"A gentle grassy path where new trainers take their first steps."
+viridian_city,Viridian City,true,true,route1|route2,"The eternally green paradise. The shop here is always busy."
+route2,Route 2,false,false,viridian_city|viridian_forest,"A short route hemmed in by tall trees."
+viridian_forest,Viridian Forest,false,false,route2|pewter_city,"A natural maze. Bug Pokemon and bug catchers are everywhere."
+pewter_city,Pewter City,true,true,viridian_forest|mt_moon,"A grey city of stone, home to the region's first gym."
+mt_moon,Mt. Moon,false,false,pewter_city|cerulean_city,"A dark cave where Zubat outnumber the rocks."
+cerulean_city,Cerulean City,true,true,mt_moon,"A city of bridges and clear water at the end of the road."

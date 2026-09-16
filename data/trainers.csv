@@ -1,0 +1,14 @@
+# trainers.csv - the trainers waiting on each route.
+# ai:   RANDOM (picks any move), SMART (picks the best damaging move),
+#       CLEVER (also uses status moves and goes for the knockout)
+# team: speciesId:level entries separated by | characters
+id,areaId,class,name,ai,reward,team,before,after
+youngster_joey,route1,Youngster,Joey,RANDOM,120,rattata:4,"My Rattata is in the top percentage of Rattata!","No way! I lost?"
+bug_catcher_rick,route2,Bug Catcher,Rick,RANDOM,150,caterpie:5|weedle:6,"Hey! You have Pokemon too? Let's battle!","Aww, my bugs..."
+lass_janine,route2,Lass,Janine,SMART,180,pidgey:6|jigglypuff:6,"My Pokemon are cuter AND stronger.","Cute doesn't win battles, I guess."
+bug_catcher_sam,viridian_forest,Bug Catcher,Sam,SMART,220,metapod:7|kakuna:7|butterfree:9,"I caught every bug in this forest!","You're strong. I'll keep training."
+camper_liam,viridian_forest,Camper,Liam,SMART,240,pikachu:8|spearow:8,"You'll never find your way out of here!","Follow the sunlight and you'll be fine."
+hiker_marcos,mt_moon,Hiker,Marcos,SMART,320,geodude:11|onix:12,"These rocks are my family!","Rock solid battling. Well done."
+gym_leader_brock,pewter_city,Gym Leader,Brock,CLEVER,900,geodude:13|sandshrew:14|onix:16,"I'm Brock! My rock-hard willpower is evident even in my Pokemon.","Your Pokemon fight for you the way mine fight for me. Take this win - you earned it."
+swimmer_dana,cerulean_city,Swimmer,Dana,CLEVER,500,goldeen:14|psyduck:15,"The water is fine. Your chances are not.","You swim well for a land trainer."
+rival_blue,viridian_city,Rival,Blue,CLEVER,700,pidgey:9|abra:9|eevee:11,"Hey! I was looking for you. Let's see whose Pokemon are stronger!","What? I picked the wrong Pokemon? No... I'll train harder!"

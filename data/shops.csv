@@ -1,0 +1,18 @@
+# shops.csv - which items each shop stocks. One row per item per shop.
+areaId,itemId
+viridian_city,pokeball
+viridian_city,potion
+viridian_city,antidote
+viridian_city,paralyze_heal
+pewter_city,pokeball
+pewter_city,greatball
+pewter_city,potion
+pewter_city,super_potion
+pewter_city,awakening
+pewter_city,burn_heal
+cerulean_city,greatball
+cerulean_city,ultraball
+cerulean_city,super_potion
+cerulean_city,hyper_potion
+cerulean_city,full_heal
+cerulean_city,revive

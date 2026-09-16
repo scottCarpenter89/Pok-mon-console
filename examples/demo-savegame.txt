@@ -1,0 +1,20 @@
+# hand-written save used to test the storage box
+version=1
+player=BoxTester
+money=3000
+area=pallet_town
+center=pallet_town
+wins=4
+seen=charmander,pidgey,rattata,caterpie,zubat,geodude,machop,onix
+caught=charmander,pidgey,rattata,caterpie,zubat,geodude
+defeated=youngster_joey
+item=pokeball:5
+item=potion:3
+party=charmander|Blaze|14|2744|30|NONE|20,7,31,15,2,28|ember:20;scratch:34
+party=pidgey|Wingy|10|1000|25|NONE|10,10,10,10,10,10|tackle:35;gust:35
+party=rattata|Nibbles|10|1000|20|NONE|5,5,5,5,5,5|tackle:35;quick_attack:30
+party=caterpie|Squirm|8|512|18|NONE|8,8,8,8,8,8|tackle:35;string_shot:40
+party=zubat|Echo|12|1728|22|PARALYSIS|12,12,12,12,12,12|lick:30;bite:25
+party=geodude|Rocky|13|2197|28|NONE|15,15,15,15,15,15|tackle:35;rock_throw:15
+box=machop|Muscles|11|1331|30|NONE|20,20,20,20,20,20|low_kick:20;leer:30
+box=onix|Tunnel|14|2744|40|NONE|25,25,25,25,25,25|rock_throw:15;harden:30

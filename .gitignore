@@ -1,0 +1,18 @@
+# Compiled classes
+out/
+test-out/
+*.class
+
+# Save files created while playing
+savegame.txt
+*.save
+
+# Build scratch files
+.sources.txt
+.testsources.txt
+
+# Editor and OS noise
+.idea/
+*.iml
+.vscode/
+.DS_Store
